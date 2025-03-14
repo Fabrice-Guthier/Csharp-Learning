@@ -1,0 +1,59 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data.Odbc;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace projetCours1
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            //exercice sur les condition:
+
+            // 1 : AGE
+            Console.WriteLine("Quel âge as tu?")
+            int age = Console.ReadLine();
+
+            if (age < 10)
+            {
+                Console.WriteLine("Vous avez moins de 10 ans.");
+            }
+            else if (age < 18)
+            {
+                Console.WriteLine("Vous avez moins de 18 ans");
+            }
+            else
+            {
+                Console.WriteLine("Vous êtez majeur.");
+            }
+
+            // 2 : TRI DE VALEURS
+            Console.WriteLine("Saisis un rpemier nombre : ")
+            int premierNombre = Console.ReadLine();
+
+            Console.WriteLine("Saisis un deuxième nombre plus : ")
+            int deuxiemeNombre = Console.ReadLine();
+
+            Console.WriteLine("Saisis un troisième nombre : ")
+            int troisiemeNombre = Console.ReadLine();
+
+            if
+            // 3 : PV DE BOSS SELON UNE DIFFICULTE
+
+
+            // 4 : ON NE SORT PAS DE LA BOUCLE TANT QU'ON NE TAPE PAS LA LETTRE "A":
+
+
+            // 5 :  ON NE SORT PAS DE LA BOUCLE TANT QU'ON NE TAPE PAS LA LETTRE "A" OU "I":
+
+
+            // 6 KATA : FIZZBUZZ : divisible par 3, on affiche FIZZ. divisible par 5, on affiche BUZZ. uand les 2 cas sont possibles, on affiche FIZZBUZZ
+            Console.ReadLine();
+        }
+    }
+}
+

@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35818.85 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FizzBuzz_25-02", "FizzBuzz_25-02\FizzBuzz_25-02.csproj", "{AD256D3C-D397-4F2C-8460-93822F4A1525}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FizzBuzz_25-02.UnitTests", "FizzBuzz_25-02.UnitTests\FizzBuzz_25-02.UnitTests.csproj", "{D069C92F-14F3-4A9D-B672-F18DC9D2F289}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD256D3C-D397-4F2C-8460-93822F4A1525}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD256D3C-D397-4F2C-8460-93822F4A1525}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD256D3C-D397-4F2C-8460-93822F4A1525}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AD256D3C-D397-4F2C-8460-93822F4A1525}.Debug|x64.Build.0 = Debug|Any CPU
+		{AD256D3C-D397-4F2C-8460-93822F4A1525}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD256D3C-D397-4F2C-8460-93822F4A1525}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD256D3C-D397-4F2C-8460-93822F4A1525}.Release|x64.ActiveCfg = Release|Any CPU
+		{AD256D3C-D397-4F2C-8460-93822F4A1525}.Release|x64.Build.0 = Release|Any CPU
+		{D069C92F-14F3-4A9D-B672-F18DC9D2F289}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D069C92F-14F3-4A9D-B672-F18DC9D2F289}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D069C92F-14F3-4A9D-B672-F18DC9D2F289}.Debug|x64.ActiveCfg = Debug|x64
+		{D069C92F-14F3-4A9D-B672-F18DC9D2F289}.Debug|x64.Build.0 = Debug|x64
+		{D069C92F-14F3-4A9D-B672-F18DC9D2F289}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D069C92F-14F3-4A9D-B672-F18DC9D2F289}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D069C92F-14F3-4A9D-B672-F18DC9D2F289}.Release|x64.ActiveCfg = Release|x64
+		{D069C92F-14F3-4A9D-B672-F18DC9D2F289}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AAC5A20E-1485-4179-B4A4-D6A5B6CEBB9C}
+	EndGlobalSection
+EndGlobal
