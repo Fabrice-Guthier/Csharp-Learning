@@ -1,0 +1,33 @@
+﻿<Window x:Class="intro_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:intro_WPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid x:Name="TP_WPF" RenderTransformOrigin="0.577,0.501">
+        <Button x:Name="BoutonPlus" Content="+" HorizontalAlignment="Left" Height="55" VerticalAlignment="Top" Width="77" Click="BoutonPlus_Click" Margin="165,90,0,0" FontSize="36" FontWeight="Bold"/>
+        <TextBlock x:Name="NombreIncremente" HorizontalAlignment="Left" Height="43" Margin="137,27,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="56" FontSize="36" FontWeight="Bold"/>
+        <Button x:Name="BoutonMoins" Content="-" HorizontalAlignment="Left" Margin="65,90,0,0" VerticalAlignment="Top" Height="55" Width="77" RenderTransformOrigin="0.48,0.487" FontSize="36" Click="BoutonMoins_Click" FontWeight="Bold"/>
+        <TextBlock x:Name="OperationResult" HorizontalAlignment="Left" Height="57" Margin="574,27,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="100" FontSize="36" RenderTransformOrigin="0.626,0.492"/>
+        <TextBox x:Name="FirstNumber" GotFocus="TextBox_GotFocus" HorizontalAlignment="Left" Height="44" Margin="500,110,0,0" TextWrapping="Wrap" Text="Saisir le 1er nombre ici" VerticalAlignment="Top" Width="106" FontSize="14"/>
+        <TextBox x:Name="SecondNumber" GotFocus="TextBox_GotFocus" HorizontalAlignment="Left" Height="44" Margin="653,110,0,0" TextWrapping="Wrap" Text="Saisir le 2ème nombre ici" VerticalAlignment="Top" Width="116" FontSize="14"/>
+        <Button x:Name="Addition" Content="+" HorizontalAlignment="Left" Height="45" Margin="496,172,0,0" VerticalAlignment="Top" Width="57" FontSize="36" Click="Addition_Click"/>
+        <Button x:Name="Substraction" Content="-" HorizontalAlignment="Left" Height="45" Margin="567,172,0,0" VerticalAlignment="Top" Width="57" FontSize="36" RenderTransformOrigin="1.019,0.43" Click="Substraction_Click"/>
+        <Button x:Name="Multiplication" Content="x" HorizontalAlignment="Left" Height="45" Margin="639,172,0,0" VerticalAlignment="Top" Width="57" FontSize="36" Click="Multiplication_Click"/>
+        <Button x:Name="Division" Content="/" HorizontalAlignment="Left" Height="45" Margin="711,172,0,0" VerticalAlignment="Top" Width="57" FontSize="36" Click="Division_Click"/>
+        <TextBlock x:Name="RandomResult" HorizontalAlignment="Left" Height="50" Margin="194,245,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="138" FontSize="36" RenderTransformOrigin="0.52,0.537"/>
+        <TextBox x:Name="FirstRandomNumber" GotFocus="TextBox_GotFocus" HorizontalAlignment="Left" Height="52" Margin="32,243,0,0" TextWrapping="Wrap" Text="Saisir le 1er nombre ici" VerticalAlignment="Top" Width="133" FontSize="18"/>
+        <TextBox x:Name="SecondRandomNumber" GotFocus="TextBox_GotFocus" HorizontalAlignment="Left" Height="52" Margin="32,307,0,0" TextWrapping="Wrap" Text="Saisir le 2ème nombre ici" VerticalAlignment="Top" Width="133" FontSize="18"/>
+        <Button x:Name="RandomizerButton" Content="Aléatoirisation" HorizontalAlignment="Left" Height="30" Margin="194,318,0,0" VerticalAlignment="Top" Width="82" Click="RandomizerButton_Click"/>
+        <TextBlock x:Name="ZoneIncrementation" HorizontalAlignment="Left" Height="25" Margin="86,150,0,0" TextWrapping="Wrap" Text="Ici on incrémente" VerticalAlignment="Top" Width="138" FontSize="18"/>
+        <TextBlock x:Name="ZoneDeCalcul" HorizontalAlignment="Left" Height="23" Margin="553,226,0,0" TextWrapping="Wrap" Text="Ici on fait des calculs" VerticalAlignment="Top" Width="172" FontSize="18"/>
+        <TextBlock x:Name="ZoneRandom" HorizontalAlignment="Left" Height="25" Margin="104,373,0,0" TextWrapping="Wrap" Text="Ici on aléatoirise" VerticalAlignment="Top" Width="138" FontSize="18"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="180" Margin="39,14,0,0" VerticalAlignment="Top" Width="224"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="182" Margin="24,224,0,0" VerticalAlignment="Top" Width="286"/>
+        <Border BorderBrush="Black" BorderThickness="1">
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="240" Margin="473,23,0,0" VerticalAlignment="Top" Width="308"/>
+        </Border>
+    </Grid>
+</Window>
