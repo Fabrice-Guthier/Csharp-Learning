@@ -29,7 +29,7 @@ namespace TP_Json_Xml_Csv
             int sumSuccessRate = 0;
             // Initialiser la somme des scores
             int sumScore = 0;
-
+            int lineAt0 = 0;
             // Ignorer la première ligne (en-tête)
             foreach (string line in lines)
             {
@@ -69,6 +69,12 @@ namespace TP_Json_Xml_Csv
                 // Vérifier si la cellule contient un score valide
                 if (cells.Length >= 4 && int.TryParse(cells[3], out score))
                 {
+                    if (score == 0)
+                    {
+                        // Ignorer les scores de 0
+                        lineAt0++;
+                        continue;
+                    }
                     // Ajouter le score à la somme des scores
                     sumScore += score;
                 }
@@ -80,11 +86,28 @@ namespace TP_Json_Xml_Csv
             if (lines.Length > 0)
             {
                 // on passe temporairement par un float avec un cast pour éviter les divisions entières
-                float averageScore = (float)sumScore / lines.Length;
+                float averageScore = (float)sumScore / (lines.Length - lineAt0);
                 Console.WriteLine($"La moyenne des scores est : {averageScore}");
             }
 
-            // Faire une classe statique LanguageManager qui convertit une clé de Mat en son nom dans le langage actuel
+
+            // Traduction de mots-clés
+            string fileTranslateName = "LanguageMats.csv";
+            // Chemin d'accès au fichier CSV
+            string translatePath = AppDomain.CurrentDomain.BaseDirectory + "..\\..\\..\\" + fileTranslateName;
+            // Définir le mot-clé à traduire
+            string keyWord = "Mat15";
+            // Sélectionner la langue
+            string SelectedLanguage = "French";
+            // Appeler la méthode SelectLanguage avec la langue spécifiée
+            LanguageManager.SelectLanguage(SelectedLanguage);
+            // Appeler la méthode GetLanguage avec le mot-clé spécifié
+            string translation = LanguageManager.GetLanguage(keyWord);
+            // Afficher la traduction
+            Console.WriteLine($"La traduction de {keyWord} en {SelectedLanguage} est : {translation}");
+            // Changer la langue
+            LanguageManager.GetLanguage(keyWord);
+
 
             // Et si vous voulez, vous pouvez commencer à essayer de trifouiller le fichier XML que je vous ai mis sur le Drive et/ou les fichiers JSON du site Json Example
         }
