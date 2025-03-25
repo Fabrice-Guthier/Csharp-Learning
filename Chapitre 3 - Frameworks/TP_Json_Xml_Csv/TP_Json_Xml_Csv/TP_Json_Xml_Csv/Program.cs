@@ -15,32 +15,52 @@ namespace TP_Json_Xml_Csv
     {
         static void Main(string[] args)
         {
+            TpCsv();
+            TpCsvLanguageManager();
+
+            // Et si vous voulez, vous pouvez commencer à essayer de trifouiller le fichier XML que je vous ai mis sur le Drive et/ou les fichiers JSON du site Json Example
+
+        }
+
+        public static void TpCsv()
+        {
             // Jeu de Tri :
             // Calculer la moyenne des scores et des successRates (puis, dans un second temps, en ignorant les scores de 0)
 
+            // Constantes pour le fichier CSV
+            const char SEPARATOR = ';';
+            const int SUCESS_RATE_COLLUMN = 2;
+            const int SCORE_COLLUMN = 3;
             // Nom du fichier CSV contenant les scores
             string fileName = "ScoresGOT.csv";
             // Chemin d'accès au fichier CSV
             string path = AppDomain.CurrentDomain.BaseDirectory + "..\\..\\..\\" + fileName;
 
-            // Lire toutes les lignes du fichier CSV
+            // Lire toutes les lignes du fichier CSV à partir d'un tableau de string
             string[] lines = File.ReadAllLines(path);
             // Initialiser la somme des successRates
             int sumSuccessRate = 0;
             // Initialiser la somme des scores
             int sumScore = 0;
-            int lineAt0 = 0;
+            int lineSuccessAt0 = 0;
+            int lineScoreAt0 = 0;
             // Ignorer la première ligne (en-tête)
             foreach (string line in lines)
             {
                 // Diviser la ligne en cellules
-                string[] cells = line.Split(';');
+                string[] cells = line.Split(SEPARATOR);
 
                 // Initialiser la variable de succès
                 int success = 0;
                 // Vérifier si la cellule contient un succès valide
-                if (cells.Length >= 4 && int.TryParse(cells[2], out success))
+                if (cells.Length >= 4 && int.TryParse(cells[SUCESS_RATE_COLLUMN], out success))
                 {
+                    if (success == 0)
+                    {
+                        // Ignorer les scores de 0
+                        lineSuccessAt0++;
+                        continue;
+                    }
                     // Ajouter le succès à la somme des successRates
                     sumSuccessRate += success;
                 }
@@ -52,7 +72,7 @@ namespace TP_Json_Xml_Csv
             if (lines.Length > 0)
             {
                 // on passe temporairement par un float avec un cast pour éviter les divisions entières
-                float averageSuccess = (float)sumSuccessRate / lines.Length;
+                float averageSuccess = (float)sumSuccessRate / ((lines.Length - lineSuccessAt0) - 1);
                 Console.WriteLine($"La moyenne des successRates est : {averageSuccess}");
             }
 
@@ -62,17 +82,17 @@ namespace TP_Json_Xml_Csv
             foreach (string line in lines)
             {
                 // Diviser la ligne en cellules
-                string[] cells = line.Split(';');
+                string[] cells = line.Split(SEPARATOR);
 
                 // Initialiser la variable de score
                 int score = 0;
                 // Vérifier si la cellule contient un score valide
-                if (cells.Length >= 4 && int.TryParse(cells[3], out score))
+                if (cells.Length >= 4 && int.TryParse(cells[SCORE_COLLUMN], out score))
                 {
                     if (score == 0)
                     {
                         // Ignorer les scores de 0
-                        lineAt0++;
+                        lineScoreAt0++;
                         continue;
                     }
                     // Ajouter le score à la somme des scores
@@ -86,17 +106,15 @@ namespace TP_Json_Xml_Csv
             if (lines.Length > 0)
             {
                 // on passe temporairement par un float avec un cast pour éviter les divisions entières
-                float averageScore = (float)sumScore / (lines.Length - lineAt0);
+                float averageScore = (float)sumScore / ((lines.Length - lineScoreAt0) - 1);
                 Console.WriteLine($"La moyenne des scores est : {averageScore}");
             }
+        }
 
-
-            // Traduction de mots-clés
-            string fileTranslateName = "LanguageMats.csv";
-            // Chemin d'accès au fichier CSV
-            string translatePath = AppDomain.CurrentDomain.BaseDirectory + "..\\..\\..\\" + fileTranslateName;
+        public static void TpCsvLanguageManager()
+        {
             // Définir le mot-clé à traduire
-            string keyWord = "Mat15";
+            string keyWord = "Mat19";
             // Sélectionner la langue
             string SelectedLanguage = "French";
             // Appeler la méthode SelectLanguage avec la langue spécifiée
@@ -107,9 +125,6 @@ namespace TP_Json_Xml_Csv
             Console.WriteLine($"La traduction de {keyWord} en {SelectedLanguage} est : {translation}");
             // Changer la langue
             LanguageManager.GetLanguage(keyWord);
-
-
-            // Et si vous voulez, vous pouvez commencer à essayer de trifouiller le fichier XML que je vous ai mis sur le Drive et/ou les fichiers JSON du site Json Example
         }
     }
 }
