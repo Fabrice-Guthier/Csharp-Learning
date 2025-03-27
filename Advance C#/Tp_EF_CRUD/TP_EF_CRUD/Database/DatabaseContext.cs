@@ -21,10 +21,27 @@ namespace TP_EF_CRUD.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            var animal = new Animal { AnimalId = 1, Name = "Toutou", Species = "chien" };
-            var client = new Client { ClientId = 2, Name = "Mr Cocktail"};
-            modelBuilder.Entity<Animal>().HasData(animal);
-            modelBuilder.Entity<Client>().HasData(client);
+            base.OnModelCreating(modelBuilder);
+
+            Client fabrice = new Client();
+            fabrice.ClientId = 1;
+            fabrice.Name = "Fabrice";
+            modelBuilder.Entity<Client>().HasData(fabrice);
+
+            Animal cat = new Animal();
+            cat.AnimalId = 1;
+            cat.Name = "Dynamite";
+            cat.Age = 12;
+            cat.Species = "Chat";
+            modelBuilder.Entity<Animal>().HasData(cat);
+
+            modelBuilder.Entity<Reservation>().HasData(
+                new Reservation 
+                { 
+                    ReservationId = 1, 
+                    AnimalId = 1, 
+                    ClientId = 1
+                });
         }
     }
 }

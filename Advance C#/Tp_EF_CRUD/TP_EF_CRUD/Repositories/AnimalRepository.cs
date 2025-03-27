@@ -14,41 +14,46 @@ namespace TP_EF_CRUD.Repositories
     {
         private DatabaseContext _dbContext;
 
+        // Constructeur pour initialiser le contexte de la base de données
         public AnimalRepository()
         {
             _dbContext = new DatabaseContext();
         }
 
+        // Récupère tous les animaux de la base de données
         public IEnumerable<Models.Animal> GetAll()
         {
-            return _dbContext.Animals.ToList();
+            return _dbContext.Animals;
         }
 
+        // Récupère un animal par son nom
         public Animal GetByName(string name)
         {
             return _dbContext.Animals.First(animal => animal.Name == name);
         }
 
+        // Récupère un animal par son identifiant
         public Animal GetById(int id)
         {
             return _dbContext.Animals.First(animal => animal.AnimalId == id);
         }
 
-        public void Create(string name, string species)
+        // Crée un nouvel animal et l'ajoute à la base de données
+        public Animal Create(string name)
         {
             Animal animal = new Animal
             {
-                Name = name,
-                Species = species
+                Name = name
             };
             _dbContext.Animals.Add(animal);
-            // PENSEZ Y A CHAQUE FOIS
+            // Sauvegarde les changements dans la base de données
             _dbContext.SaveChanges();
+            return animal;
         }
 
+        // Supprime un animal par son identifiant
         public string DeleteById(int id)
         {
-
             Animal animal = GetById(id);
 
             if (animal == null)
@@ -58,9 +63,9 @@ namespace TP_EF_CRUD.Repositories
             _dbContext.Animals.Remove(animal);
             _dbContext.SaveChanges();
             return animal.Name;
-
         }
 
+        // Met à jour le nom d'un animal par son identifiant
         public string UpdateById(int id, string name)
         {
             Animal animal = GetById(id);
