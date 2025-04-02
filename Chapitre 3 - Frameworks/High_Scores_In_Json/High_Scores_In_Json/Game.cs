@@ -24,7 +24,8 @@ namespace High_Scores_In_Json
             int difficulte = 1;
             int nombreAleatoire;
             int nombreMaximum;
-            
+            int HighScore;
+
             do
             {
                 Console.WriteLine("Choisissez un mode de difficulté :\n" +
@@ -37,6 +38,7 @@ namespace High_Scores_In_Json
                 nombreAleatoire = 0;
                 nombreMaximum = 101;
                 nombreDeCoups = 0;
+                HighScore = 0;
 
                 switch (difficulte)
                 {
@@ -82,6 +84,11 @@ namespace High_Scores_In_Json
                     }
                 } while (nombreEntre != nombreAleatoire);
 
+                if (nombreDeCoups < HighScore)
+                {
+                    HighScore = nombreDeCoups;
+                    Console.WriteLine($"Nouveau meilleur score : {HighScore}");
+                }
                 Console.WriteLine("Fin du jeu ! Vous avez trouvé en " + nombreDeCoups + " coups");
 
                 Console.WriteLine("Voulez-vous rejouer ? Dîtes oui si vous voulez rejouer : ");
