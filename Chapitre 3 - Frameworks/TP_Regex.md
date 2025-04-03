@@ -74,7 +74,8 @@ Ce code C# est la traduction fidèle de votre simple mais puissant glyphe ^p, pr
 
 2. # Chaîne commençant par p mais suivi d'exactement 4 caractères
    ^p.{4}
-La Signification du Sortilège ^p.{4} :
+
+<La Signification du Sortilège ^p.{4} :
 
 ^ (Le Gardien du Seuil) : Toujours notre ancre, exigeant que la correspondance commence au tout début de la chaîne.
 p (La Première Rune Requise) : Le caractère littéral 'p' minuscule doit être le premier caractère.
@@ -153,7 +154,8 @@ Ce fragment de code C# est maintenant prêt à être intégré dans vos scripts 
 
 3. # Pareil mais uniquement avec des caractère alphabétiques
    ^p[a-z]{4}
-La Signification du Sortilège ^p[a-z]{4} :
+
+<La Signification du Sortilège ^p[a-z]{4} :
 
 ^ (Le Gardien du Seuil) : Comme toujours, la vérification doit débuter au commencement exact de la chaîne.
 p (La Première Rune Imposée) : Le caractère 'p' minuscule est obligatoire en première position.
@@ -242,9 +244,8 @@ RegexOptions.IgnoreCase: Notez bien que cette option, si appliquée à ce patter
 
 4. # Chaîne commençant par p et finissant par t
    p.*t
-Entendu, Scribe ! L'incantation p.*t est un classique, souvent utilisé pour capturer des segments de texte entre deux points de repère. Analysons sa magie et forgeons son équivalent en C#.
 
-La Signification du Sortilège p.*t :
+<La Signification du Sortilège p.*t :
 
 p (La Rune Initiale) : Cherche le caractère littéral 'p' minuscule. C'est le point de départ de notre recherche.
 .* (La Consommation Gourmande) : C'est la partie la plus intéressante et parfois la plus délicate !
@@ -381,9 +382,8 @@ Ce code C# vous permet de rechercher ces segments de texte délimités par 'p' e
 
 5. # Toutes les chaînes de 10 caractères suivant "<item>"
    <item>[a-zA-Z0-9]{10}
-Absolument, ô Tisseur de Code ! Attaquons-nous à ce nouveau sortilège Regex : <item>[a-zA-Z0-9]{10}. Il est conçu pour repérer des identifiants spécifiques, peut-être des codes d'objets enchantés dans les données d'un jeu.
 
-La Signification du Sortilège <item>[a-zA-Z0-9]{10} :
+<La Signification du Sortilège <item>[a-zA-Z0-9]{10} :
 
 <item> (Le Sigle d'Invocation) : Ceci correspond à la chaîne de caractères littérale <item>. Il ne s'agit pas d'une balise HTML au sens technique pour la Regex, mais simplement de cette séquence précise de 6 caractères.
 [a-zA-Z0-9] (Le Sceau Alphanumérique) :
@@ -507,7 +507,7 @@ Niveau difficile :
    \d{2}\/\d{2}\/\d{4}
 Ah, une formule pour déchiffrer les chronologies ! L'incantation \d{2}\/\d{2}\/\d{4} est un sortilège classique pour identifier des dates dans un format numérique spécifique, tel qu'on pourrait en trouver gravées sur d'anciennes stèles ou dans des registres poussiéreux. Voyons comment le manier en C#.
 
-La Signification du Sortilège \d{2}\/\d{2}\/\d{4} :
+<La Signification du Sortilège \d{2}\/\d{2}\/\d{4} :
 
 \d (La Rune Numérique) : Correspond à n'importe quel chiffre unique (de 0 à 9).
 {2} (Le Duo Obligatoire) : Ce quantificateur exige que la rune précédente (\d) apparaisse exactement deux fois. Donc, \d{2} cherche une séquence de deux chiffres.
@@ -607,7 +607,8 @@ Validation du Format vs. Validité de la Date: Il est important de noter que cet
 
 7. # Chaîne qui ressemble à un nombre qui peut éventuellement être négatif, et éventuellement être décimal (avec une virgule donc)
    -?\d+(\.\d+)?
-La Signification du Sortilège -?\d+(\.\d+)? :
+
+<La Signification du Sortilège -?\d+(\.\d+)? :
 
 -? (Le Signe Optionnel du Froid) :
 - : Correspond au caractère littéral du tiret (signe moins).
@@ -725,7 +726,8 @@ Exercice avec des captures :
 
 8. # Capturer tous les mots d'un texte qui commencent par la lettre a
    a\w+
-La Signification du Sortilège a\w+ :
+
+<La Signification du Sortilège a\w+ :
 
 a (La Rune Initiale) : Recherche le caractère littéral 'a' minuscule.
 \w (La Rune de Mot) : Correspond à n'importe quel "caractère de mot". Ceci inclut :
@@ -841,7 +843,8 @@ RegexOptions.IgnoreCase: J'ai ajouté cette option lors de la création de l'obj
 
 9. # Capturer toutes les occurrences qui ressemblent à un nom de fichier qui finit par .png et ne garder que le nom du fichier (et pas le .png donc)
    \/?([a-zA-Z0-9_-]+\.png)
-La Signification du Sortilège \/?([a-zA-Z0-9_-]+\.png) :
+
+<La Signification du Sortilège \/?([a-zA-Z0-9_-]+\.png) :
 
 \/? (Le Chemin Optionnel) :
 \/ : Recherche le caractère littéral de la barre oblique /. L'échappement \ est une bonne pratique pour la clarté ou la portabilité, même si en C# dans une chaîne @"", un simple / suffirait souvent.
@@ -959,7 +962,8 @@ Sensibilité à la Casse et RegexOptions.IgnoreCase: Par défaut, la partie png 
 
 10. # Capturer le tag de toutes les balises d'un fichier HTML ou XAML (par exemple une balise <div id="pouetpouet"> devrait capturer div)
     <([a-z]+)(\s+[^>]+)?>
-La Signification du Sortilège (Rappel) :
+
+<La Signification du Sortilège (Rappel) :
 
 Ce sortilège est conçu pour trouver des balises ouvrantes simples, de type HTML ou XML, avec quelques caractéristiques précises :
 
