@@ -24,10 +24,5 @@
         <TextBlock x:Name="ZoneIncrementation" HorizontalAlignment="Left" Height="25" Margin="86,150,0,0" TextWrapping="Wrap" Text="Ici on incrémente" VerticalAlignment="Top" Width="138" FontSize="18"/>
         <TextBlock x:Name="ZoneDeCalcul" HorizontalAlignment="Left" Height="23" Margin="553,226,0,0" TextWrapping="Wrap" Text="Ici on fait des calculs" VerticalAlignment="Top" Width="172" FontSize="18"/>
         <TextBlock x:Name="ZoneRandom" HorizontalAlignment="Left" Height="25" Margin="104,373,0,0" TextWrapping="Wrap" Text="Ici on aléatoirise" VerticalAlignment="Top" Width="138" FontSize="18"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="180" Margin="39,14,0,0" VerticalAlignment="Top" Width="224"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="182" Margin="24,224,0,0" VerticalAlignment="Top" Width="286"/>
-        <Border BorderBrush="Black" BorderThickness="1">
-            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="240" Margin="473,23,0,0" VerticalAlignment="Top" Width="308"/>
-        </Border>
     </Grid>
 </Window>

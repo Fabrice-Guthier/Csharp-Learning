@@ -73,7 +73,7 @@ Ce code C# est la traduction fidèle de votre simple mais puissant glyphe ^p, pr
 #############################################################################################################
 
 2. # Chaîne commençant par p mais suivi d'exactement 4 caractères
-   ^p.{4}
+   ^p.{4} <j'ai oublié le $
 
 <La Signification du Sortilège ^p.{4} :
 
@@ -100,7 +100,7 @@ public class PreciseLengthChecker
     public static void CheckStartPAndExactLength(string arcaneText)
     {
         // L'incantation : commence par 'p', suivi d'exactement 4 caractères quelconques.
-        string pattern = "^p.{4}";
+        string pattern = "^p.{4}$";
 
         // Méthode 1: Lancer le sort directement (efficace pour un seul test)
         bool isMatchDirect = Regex.IsMatch(arcaneText, pattern);
@@ -153,7 +153,7 @@ Ce fragment de code C# est maintenant prêt à être intégré dans vos scripts 
 #############################################################################################################
 
 3. # Pareil mais uniquement avec des caractère alphabétiques
-   ^p[a-z]{4}
+   ^p[a-z]{4}$ ne pas oublier les majuscules à traiter
 
 <La Signification du Sortilège ^p[a-z]{4} :
 
@@ -243,7 +243,7 @@ RegexOptions.IgnoreCase: Notez bien que cette option, si appliquée à ce patter
 #############################################################################################################
 
 4. # Chaîne commençant par p et finissant par t
-   p.*t
+   ^p.*t$
 
 <La Signification du Sortilège p.*t :
 
@@ -504,7 +504,7 @@ Ce code C# vous permet désormais de scanner vos textes à la recherche de ces i
 Niveau difficile :
 
 6. # Chaîne qui ressemble à une date écrite sous la forme 00/00/0000
-   \d{2}\/\d{2}\/\d{4}
+   ^\d{2}\/\d{2}\/\d{4}$        bien penser au chapeau et dollar pour le début et la fin
 Ah, une formule pour déchiffrer les chronologies ! L'incantation \d{2}\/\d{2}\/\d{4} est un sortilège classique pour identifier des dates dans un format numérique spécifique, tel qu'on pourrait en trouver gravées sur d'anciennes stèles ou dans des registres poussiéreux. Voyons comment le manier en C#.
 
 <La Signification du Sortilège \d{2}\/\d{2}\/\d{4} :
@@ -606,9 +606,9 @@ Validation du Format vs. Validité de la Date: Il est important de noter que cet
 #############################################################################################################
 
 7. # Chaîne qui ressemble à un nombre qui peut éventuellement être négatif, et éventuellement être décimal (avec une virgule donc)
-   -?\d+(\.\d+)?
+   ^-?\d+(?:\.\d+)?$
 
-<La Signification du Sortilège -?\d+(\.\d+)? :
+<La Signification du Sortilège -?\d+(?:\.\d+)? :
 
 -? (Le Signe Optionnel du Froid) :
 - : Correspond au caractère littéral du tiret (signe moins).
@@ -644,7 +644,7 @@ public class NumericValueExtractor
         // L'incantation pour dénicher les nombres : -?\d+(\.\d+)?
         // Utilisation de la chaîne verbatim @"" pour une meilleure lisibilité en C#.
         // Le \. est correctement interprété comme un point littéral par le moteur Regex.
-        string pattern = @"-?\d+(\.\d+)?";
+        string pattern = @"-?\d+(?:\.\d+)?";
 
         // Forgeons notre outil de détection numérique
         Regex numberRegex = new Regex(pattern);
@@ -725,9 +725,9 @@ Limitation Culturelle: Le code et les commentaires soulignent que ce pattern sp�
 Exercice avec des captures :
 
 8. # Capturer tous les mots d'un texte qui commencent par la lettre a
-   a\w+
+   \b([aA][a-z'])\b
 
-<La Signification du Sortilège a\w+ :
+<La Signification du Sortilège \b([aA][a-z'])\b :
 
 a (La Rune Initiale) : Recherche le caractère littéral 'a' minuscule.
 \w (La Rune de Mot) : Correspond à n'importe quel "caractère de mot". Ceci inclut :
@@ -750,8 +750,8 @@ public class WordHunter
     // --- Scénario 1: Trouver les mots, capture implicite de TOUTE la correspondance ---
     public static void FindWordsStartingWithA_ImplicitCapture(string sacredText)
     {
-        // L'incantation simple : a\w+
-        string pattern = @"a\w+"; // Utilisation de la chaîne verbatim @""
+        // L'incantation simple : \b([aA][a-z'])\b
+        string pattern = @"\b([aA][a-z'])\b"; // Utilisation de la chaîne verbatim @""
 
         Regex wordRegex = new Regex(pattern, RegexOptions.IgnoreCase); // Ajout IgnoreCase pour 'a' ou 'A'
 
@@ -842,9 +842,9 @@ RegexOptions.IgnoreCase: J'ai ajouté cette option lors de la création de l'obj
 #############################################################################################################
 
 9. # Capturer toutes les occurrences qui ressemblent à un nom de fichier qui finit par .png et ne garder que le nom du fichier (et pas le .png donc)
-   \/?([a-zA-Z0-9_-]+\.png)
+   \/?([a-zA-Z0-9_-]+)\.png 
 
-<La Signification du Sortilège \/?([a-zA-Z0-9_-]+\.png) :
+<La Signification du Sortilège \/?([a-zA-Z0-9_-]+)\.png :
 
 \/? (Le Chemin Optionnel) :
 \/ : Recherche le caractère littéral de la barre oblique /. L'échappement \ est une bonne pratique pour la clarté ou la portabilité, même si en C# dans une chaîne @"", un simple / suffirait souvent.
@@ -961,7 +961,7 @@ Sensibilité à la Casse et RegexOptions.IgnoreCase: Par défaut, la partie png 
 #############################################################################################################
 
 10. # Capturer le tag de toutes les balises d'un fichier HTML ou XAML (par exemple une balise <div id="pouetpouet"> devrait capturer div)
-    <([a-z]+)(\s+[^>]+)?>
+    <([a-z]+)(\s+[^>]+)?>       <\/?(\w+)\/?[ >]
 
 <La Signification du Sortilège (Rappel) :
 

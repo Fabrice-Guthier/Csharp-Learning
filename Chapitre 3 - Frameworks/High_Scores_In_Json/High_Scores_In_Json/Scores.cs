@@ -22,8 +22,10 @@ namespace High_Scores_In_Json
             Name = name;
             Score = score;
         }
-
-        // Méthode pour sauvegarder les scores dans un fichier JSON
+        /// <summary>
+        /// Méthode pour sauvegarder les scores dans un fichier JSON
+        /// </summary>
+        /// <param name="newScore">appel de la classe score</param>
         internal static void SaveScores(Scores newScore)
         {
             string jsonFileName = "scores.json";
