@@ -15,10 +15,19 @@ namespace DRYExercise
 
         public void DisplayLogs()
         {
+            Console.WriteLine(GetLogs());
+        }
+
+        public string GetLogs()
+        {
+            string toReturn = "";
+
             foreach (string log in Logs)
             {
-                Console.WriteLine(log);
+                toReturn += log + "\n";
             }
+
+            return toReturn;
         }
     }
 }

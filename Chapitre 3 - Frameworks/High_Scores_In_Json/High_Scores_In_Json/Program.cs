@@ -22,8 +22,8 @@ namespace High_Scores_In_Json
             Scores.LoadScores();
 
             // Demander le nom du joueur
-            Console.WriteLine("Saisissez votre nom :");
-            string playerName = Console.ReadLine();
+            InputManager nickName = new InputManager();
+            string playerName = nickName.InputNickName();
 
             // Créer une nouvelle instance de jeu et démarrer le jeu
             Game game = new Game();
@@ -31,7 +31,7 @@ namespace High_Scores_In_Json
 
             // Créer une nouvelle instance de Scores pour enregistrer le score du joueur
             Scores score = new Scores();
-            score.Name = playerName; // Lire le nom du joueur entré dans la console précédemment
+            score.Name = playerName.ToString(); // Lire le nom du joueur entré dans la console précédemment
             score.Score = game.nombreDeCoups; // Assigner le score du jeu au score du joueur
 
             // Sauvegarder le nouveau score dans le fichier JSON

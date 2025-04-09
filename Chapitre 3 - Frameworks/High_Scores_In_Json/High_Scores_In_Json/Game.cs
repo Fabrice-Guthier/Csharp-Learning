@@ -28,12 +28,8 @@ namespace High_Scores_In_Json
 
             do
             {
-                Console.WriteLine("Choisissez un mode de difficulté :\n" +
-                    "1 : chiffre entre 1 et 100\n" +
-                    "2 : chiffre entre 1 et 1000\n" +
-                    "3 : chiffre entre 1 et 10000");
-                entreeDifficulte = Console.ReadLine();
-                 difficulte = int.Parse(entreeDifficulte);
+                entreeDifficulte = DifficultyManager.InputDifficulty();
+                difficulte = int.Parse(entreeDifficulte);
 
                 nombreAleatoire = 0;
                 nombreMaximum = 101;
@@ -64,23 +60,23 @@ namespace High_Scores_In_Json
 
                 do
                 {
+                    DisplayManager.DisplayNextTurn();
                     nombreDeCoups++;
 
-                    Console.WriteLine("Quel est le nombre mystere ? ");
                     string entree = Console.ReadLine();
                     nombreEntre = int.Parse(entree);
 
                     if (nombreEntre > nombreAleatoire)
                     {
-                        Console.WriteLine("C'est moins !");
+                        DisplayManager.DisplayItsLess();
                     }
                     else if (nombreEntre < nombreAleatoire)
                     {
-                        Console.WriteLine("C'est plus !");
+                        DisplayManager.DisplayItsMore();
                     }
                     else
                     {
-                        Console.WriteLine("C'est gagné !");
+                        DisplayManager.DisplayItsWin();
                     }
                 } while (nombreEntre != nombreAleatoire);
 
@@ -89,11 +85,10 @@ namespace High_Scores_In_Json
                     HighScore = nombreDeCoups;
                     Console.WriteLine($"Nouveau meilleur score : {HighScore}");
                 }
-                Console.WriteLine("Fin du jeu ! Vous avez trouvé en " + nombreDeCoups + " coups");
+                DisplayManager.DisplayGameOver(nombreDeCoups);
 
-                Console.WriteLine("Voulez-vous rejouer ? Dîtes oui si vous voulez rejouer : ");
-                entreeRejouer = Console.ReadLine();
-            } while (entreeRejouer == "oui");
+                DisplayManager.DisplayContinueGame();
+            } while (entreeRejouer == "O");
 
             Console.WriteLine("Ok dégage !");
         }

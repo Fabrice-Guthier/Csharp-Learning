@@ -20,7 +20,7 @@ namespace DRYExercise
             return Quantity == quantity;
         }
 
-        public bool CheckBalance()
+        public bool CheckMoneyAmount()
         {
             return MoneyAmount - Quantity >= 0;
         }
@@ -44,7 +44,7 @@ namespace DRYExercise
         public void Debit(float quantity)
         {
             CheckQuantity(quantity);
-            if (CheckBalance())
+            if (CheckMoneyAmount())
             {
                 Withdraw();
             }
@@ -61,7 +61,7 @@ namespace DRYExercise
         public void Transfer(float quantity, BankAccount toCredit)
         {
             CheckQuantity(quantity);
-            if (CheckBalance())
+            if (CheckMoneyAmount())
             {
                 Withdraw();
                 toCredit.Deposit();
@@ -72,14 +72,7 @@ namespace DRYExercise
 
         public string GetLogs()
         {
-            string toReturn = "";
-
-            foreach (string log in AccountLog.Logs)
-            {
-                toReturn += log + "\n";
-            }
-
-            return toReturn;
+            return AccountLog.GetLogs();
         }
     }
 }
