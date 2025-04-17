@@ -8,8 +8,6 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 
-
-
 namespace High_Scores_In_Json
 {
     public class Scores

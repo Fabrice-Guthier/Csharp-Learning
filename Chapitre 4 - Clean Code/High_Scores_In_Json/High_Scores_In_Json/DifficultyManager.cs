@@ -15,12 +15,12 @@ namespace High_Scores_In_Json
             return Console.ReadLine();
         }
 
-        public static void SwitchDifficulty(int difficulte)
+        public static int SwitchDifficulty(int difficulte)
         {
             int easyDifficultyLimit = 101;
             int mediumDifficultyLimit = 1001;
             int hardDifficultyLimit = 10001;
-            int nombreMaximum = 101;
+            int nombreMaximum;
 
             switch (difficulte)
             {
@@ -37,17 +37,15 @@ namespace High_Scores_In_Json
                     nombreMaximum = easyDifficultyLimit;
                     break;
             }
-            Randomizer();
 
-
+            return Randomizer(nombreMaximum);
         }
-        public static int Randomizer()
+
+        public static int Randomizer(int nombreMaximum)
         {
             Random aleatoire = new Random();
             int nombreDeDepartPourAleatoire = 1;
-            int nombreMaximum = 101;
-            int nombreAleatoire = aleatoire.Next(nombreDeDepartPourAleatoire, nombreMaximum);
-            return nombreAleatoire;
+            return aleatoire.Next(nombreDeDepartPourAleatoire, nombreMaximum);
         }
     }
 }

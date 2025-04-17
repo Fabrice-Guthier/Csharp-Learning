@@ -15,6 +15,8 @@ namespace High_Scores_In_Json
     public class Game
     {
         internal int nombreDeCoups;
+        int nombreAleatoire;
+        
 
         public void Play()
         {
@@ -24,8 +26,6 @@ namespace High_Scores_In_Json
             string rejouer = "o";
             int nombreDeSecuritePourCommencer = -1;
             int difficulte = 1;
-            int nombreAleatoire = 0; // Fix: Initialize the variable to avoid CS0165
-            int nombreMaximum;
             int HighScore = 0;
 
             do
@@ -33,7 +33,7 @@ namespace High_Scores_In_Json
                 entreeDifficulte = DifficultyManager.InputDifficulty();
                 difficulte = int.Parse(entreeDifficulte);
 
-                DifficultyManager.SwitchDifficulty(difficulte);
+                nombreAleatoire = DifficultyManager.SwitchDifficulty(difficulte);
 
                 int nombreEntre = nombreDeSecuritePourCommencer;
 
