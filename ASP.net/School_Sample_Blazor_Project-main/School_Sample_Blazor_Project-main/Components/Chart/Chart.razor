@@ -1,0 +1,55 @@
+﻿@inject IJSRuntime JSRuntime
+@implements IAsyncDisposable
+
+<canvas id="@Id"></canvas>
+
+@code {
+    [Parameter, EditorRequired]
+    public required string Id { get; set; }
+
+    [Parameter, EditorRequired]
+    public required List<string> Labels { get; set; }
+
+    [Parameter, EditorRequired]
+    public required object Data { get; set; }
+
+    private IJSObjectReference? module;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender) return;
+        module = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./Components/Chart/Chart.razor.js");
+
+        await module.InvokeVoidAsync("chartSetup", Id, new
+        {
+            Type = ChartType.Bar.ToString().ToLower(),
+            Data = new
+            {
+                Labels = Labels,
+                Datasets = new[]
+                {
+                  new { Label = "# of Votes", Data = Data, BorderWidth = 1 }
+                },
+            },
+            Options = new
+            {
+                Scales = new
+                {
+                    Y = new
+                    {
+                        BeginAtZero = true
+                    }
+                }
+            }
+        });
+    }
+
+    async ValueTask IAsyncDisposable.DisposeAsync()
+    {
+        if (module is null) return;
+        try
+        {
+            await module.DisposeAsync();
+        } catch (JSDisconnectedException) { }
+    }
+}

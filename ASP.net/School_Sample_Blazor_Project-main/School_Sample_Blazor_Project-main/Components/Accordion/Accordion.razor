@@ -1,0 +1,42 @@
+﻿@rendermode InteractiveServer
+
+<button class="accordion" @onclick="Toggle">
+	<span>
+		@Icon
+	</span>
+	@Title
+</button>
+
+<div class="@PanelClass">
+	@ChildContent
+</div>
+
+@code {
+	[Parameter]
+	public string Title { get; set; } = "";
+	[Parameter]
+	public RenderFragment? ChildContent { get; set; }
+	[Parameter]
+	public EventCallback OnOpen { get; set; } = new();
+	[Parameter]
+	public Boolean IsOpen { get; set; } = false;
+
+	private string PanelClass {
+		get {
+			return $"panel {(IsOpen ? "open" : "")}";
+		}
+	}
+
+	private string Icon
+	{
+		get
+		{
+			return IsOpen ? "⬆️" : "⬇️";
+		}
+	}
+
+	protected async Task Toggle()
+	{
+		await OnOpen.InvokeAsync();
+	}
+}

@@ -1,0 +1,51 @@
+﻿using CDA.Gestionnaires;
+using CDA.SystemeDeJeu;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
+
+namespace CDA.Abstract
+{
+    internal class AbstractGestionnaireSauvegarde
+    {
+        string chemin;
+        public AbstractTableauDesScores TableauDesScores { get; set; }
+
+        public AbstractGestionnaireSauvegarde()
+        {
+            InitialisationChemin();
+
+            ChargementTableauDesScores();
+        }
+
+        public void InitialisationChemin()
+        {
+            string nomDeFichier = "meilleursScores.json";
+            chemin = AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\" + nomDeFichier;
+        }
+
+        public void ChargementTableauDesScores()
+        {
+            if (File.Exists(chemin))
+            {
+                string jsonStringDeserialize = File.ReadAllText(chemin);
+                TableauDesScores = JsonSerializer.Deserialize<AbstractTableauDesScores>(jsonStringDeserialize);
+            }
+            else
+            {
+                TableauDesScores = new TableauDesScores();
+            }
+
+            GestionnaireAffichage.AffichageTableauDesScores(TableauDesScores);
+        }
+
+        public void SauvegardeTableauDesScores()
+        {
+            string jsonString = JsonSerializer.Serialize(TableauDesScores);
+            File.WriteAllText(chemin, jsonString);
+        }
+    }
+}
