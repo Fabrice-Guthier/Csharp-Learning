@@ -1,0 +1,100 @@
+﻿@using System.ComponentModel.DataAnnotations
+@inject ILogger<StarshipForm> Logger
+
+@* Info, en utilisant UseForgery() dans votre application (voir Program.cs), EditForm applique directement cette sécurité par défaut *@
+@* Enhance seulement nécéssaire en static SSR *@
+<EditForm Model="Model" OnValidSubmit="Submit" FormName="startship-form" Enhance> @* le Enhance permet de faire un rendu du formulaire en mode statique SSR, pas besoin de ça en mode dynamique *@
+    <DataAnnotationsValidator /> @* => cette commande oblige à respecter les règles du formulaire *@
+    <ValidationSummary class="text-danger" />
+
+    <div class="mt-3">
+        <label>Identifiant @RequiredTemplate("Id")</label>
+        <InputText @bind-Value="Model!.Id" class="form-control" />
+        <ValidationMessage For="@(() => Model!.Id)" class="text-danger" /> 
+    </div>
+
+    <div class="mt-3">
+        <label>Description @RequiredTemplate("Description")</label>
+        <InputTextArea @bind-Value="Model!.Description" class="form-control" />
+@*         le bind-value fait un lien bi directionnel, donc pas besoin de faire un onchange. 
+           Si on modifie l'id dans la bdd, ça modifie la valeur dans le champ du formulaire, et vice versa' *@
+    </div>
+
+    <div class="mt-3">
+        <label>Classification primaire @RequiredTemplate("Classification")</label>
+        <InputSelect @bind-Value="Model!.Classification" class="form-control">
+            <option value="">
+                Sélectionnez une classification
+            </option>
+
+            <option checked="@(Model!.Classification == "exploration")"
+                    value="exploration">
+                Exploration
+            </option>
+            <option checked="@(Model!.Classification == "diplomacy")"
+                    value="diplomacy">
+                Diplomatie
+            </option>
+            <option checked="@(Model!.Classification == "defense")"
+                    value="defense">
+                Défense
+            </option>
+        </InputSelect>
+    </div>
+
+    <div class="mt-3">
+        <label>Habitations maximum @RequiredTemplate("MaximumAccommodation")</label>
+		<InputNumber @bind-Value="Model!.MaximumAccommodation" class="form-control" />
+    </div>
+
+    <div class="mt-3">
+        <label>Date de production @RequiredTemplate("ProductionDate")</label>
+        <InputDate @bind-Value="Model!.ProductionDate" class="form-control" />
+    </div>
+
+    <div class="mt-3">
+        <InputCheckbox @bind-Value="Model!.IsValidatedDesign" id="IsValidatedDesign" />
+        <label for="IsValidatedDesign">Approbation du design du modèle de vaisseau</label>
+    </div>
+
+    <div class="mt-3">
+        <button class="btn btn-primary" type="submit">
+            Submit
+        </button>
+    </div>
+</EditForm>
+
+@code {
+    [SupplyParameterFromForm] // Ce paramètre n'est nécéssaire qu'avec le static SSR
+    private StarshipFormModel? Model { get; set; }
+
+    protected override void OnInitialized() => Model ??= new() { ProductionDate = DateTime.UtcNow };
+
+    private RenderFragment RequiredTemplate(string property) => @<span>@(Attribute.IsDefined(typeof(StarshipFormModel).GetProperty(property)!, typeof(RequiredAttribute)) ? "*" : "")</span>;
+
+    // private void Submit()
+    // {
+    //     Logger.LogInformation("Id = {Id}, Description = {Description}, " +
+    //         "Classification = {Classification}, MaximumAccommodation = " +
+    //         "{MaximumAccommodation}, IsValidatedDesign = " +
+    //         "{IsValidatedDesign}, ProductionDate = {ProductionDate}",
+    //         Model?.Id, Model?.Description, Model?.Classification,
+    //         Model?.MaximumAccommodation, Model?.IsValidatedDesign,
+    //         Model?.ProductionDate);
+    // }
+
+    // on fait la mêmme méthode mais avec de l'async pour simuler une tâche longue
+    async private Task Submit()
+    {
+        // Simulation d'une tâche longue de soumission de formulaire
+        await Task.Delay(1000);
+
+        Logger.LogInformation("Id = {Id}, Description = {Description}, " +
+            "Classification = {Classification}, MaximumAccommodation = " +
+            "{MaximumAccommodation}, IsValidatedDesign = " +
+            "{IsValidatedDesign}, ProductionDate = {ProductionDate}",
+            Model?.Id, Model?.Description, Model?.Classification,
+            Model?.MaximumAccommodation, Model?.IsValidatedDesign,
+            Model?.ProductionDate);
+    }
+}

@@ -1,0 +1,60 @@
+﻿@* Exemple d'utilisation des formulaires sans les composants de Blazor *@
+
+@* Si pas d'utilisation de StreamRendring et que l'on souhaite quand même avoir un rendu de l'UI si tâche longue *@
+@attribute [StreamRendering, RequireAntiforgeryToken]
+@* @rendermode InteractiveServer *@
+@inject ILogger<StarshipPlainForm> Logger
+
+<form class="form" method="post" @onsubmit="Submit" @formname="starship-plain-form">
+	@* Element de sécurité pour la protection contre les attaques CSRF *@
+	<AntiforgeryToken />
+
+	<div class="form-group mb-3">
+		<label>
+			Identifier:
+		</label>
+
+		@* @bind et @bind-value devrait fonctionner, mais apparement il manque quelque chose :) *@
+		@* Autre possibilité => Utilisé value="@Model!.Id" et utiliser un @onchange pour modifier la propriété Model.Id avec la valeur du champ, mais ça fait plus de taff ! *@
+		@* <input class="form-control" @bind-value="Model!.Id" /> *@
+
+		<InputText class="form-control" @bind-Value="Model!.Id" />
+	</div>
+
+	@if (!Submitting)
+	{
+		<button class="btn btn-primary" type="submit">
+			Submit
+		</button>
+	}
+	else
+	{
+		<button class="btn btn-primary" disabled type="submit">
+			Submitting...
+		</button>
+	}
+
+</form>
+
+@code {
+	// Permet de remplir le Model avec les valeurs du formulaire automatiquement lors de la soumission
+	// Sans ça, ça serait à vous de le faire manuellement
+	// Pas nécéssaire en mode de rendu InteractiveServer
+	[SupplyParameterFromForm]
+	StarshipFormModel? Model { get; set; }
+
+	bool Submitting = false;
+
+	protected override void OnInitialized() => Model ??= new();
+
+	async Task Submit()
+	{
+		Submitting = true;
+
+		// Simulation d'une tâche longue de soumission de formulaire
+		await Task.Delay(500);
+
+		Submitting = false;
+		Logger.LogInformation("Id = {Id}", Model?.Id);
+	}
+}

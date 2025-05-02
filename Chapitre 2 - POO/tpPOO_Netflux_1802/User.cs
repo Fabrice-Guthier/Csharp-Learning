@@ -31,7 +31,7 @@ namespace tpPOO_Netflux_1802
             content.NumberOfViews++;
         }
 
-        public void Select (ISelectable selectable)
+        public void Select(ISelectable selectable)
         {
             selectable.Selected(this);
         }

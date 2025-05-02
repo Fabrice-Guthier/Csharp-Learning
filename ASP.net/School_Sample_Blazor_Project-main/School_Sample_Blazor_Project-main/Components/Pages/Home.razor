@@ -7,26 +7,25 @@
 
 Welcome to your new app.
 
-<Accordion OnOpen="() => AccordionManager.Open(0)" IsOpen="AccordionManager.isOpen(0)" Title="Section 1">
-	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-	Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+<Accordion Title="Info A" IsOpen="@am.isOpen(0)" OnOpen="() => am.Open(0)">
+    <ChildContent>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ut maximus odio, non porta lectus. Quisque malesuada eros eget hendrerit congue. Nunc porta tincidunt eros nec vehicula. Duis accumsan nibh ut ante accumsan pharetra. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin sit amet egestas velit. Maecenas feugiat hendrerit nunc vulputate efficitur. Aliquam euismod neque nec lorem pharetra, a dapibus tortor volutpat. Curabitur mollis metus eget placerat commodo. Duis imperdiet metus quis urna pharetra interdum. Mauris aliquet mattis aliquet.
+        <button>Gagne 200€ en cliquant là</button>
+    </ChildContent>
+    <TitleLeftSide Context="Icon">
+        @Icon
+    </TitleLeftSide>
+    <TitleRightSide>
+        Test
+    </TitleRightSide>
 </Accordion>
 
-<Accordion OnOpen="() => AccordionManager.Open(1)" IsOpen="AccordionManager.isOpen(1)" Title="Section 2">
-	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-	Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+<Accordion Title="Info B" IsOpen="@am.isOpen(1)" OnOpen="() => am.Open(1)">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ut maximus odio, non porta lectus. Quisque malesuada eros eget hendrerit congue. Nunc porta tincidunt eros nec vehicula. Duis accumsan nibh ut ante accumsan pharetra. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin sit amet egestas velit. Maecenas feugiat hendrerit nunc vulputate efficitur. Aliquam euismod neque nec lorem pharetra, a dapibus tortor volutpat. Curabitur mollis metus eget placerat commodo. Duis imperdiet metus quis urna pharetra interdum. Mauris aliquet mattis aliquet.
 </Accordion>
 
-<Accordion OnOpen="() => AccordionManager.Open(2)" IsOpen="AccordionManager.isOpen(2)" Title="Section 3">
-	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-	Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-</Accordion>
-
-<Chart
-	Id="Chart1"
-	Data="@(new[] {12, 19, 3, 5, 2, 3})"
-	Labels="@( new List<string> {"Red", "Blue", "Yellow", "Green", "Purple", "Orange"} )" />
+<Chart Id="chart1" />
 
 @code {
-	private AccordionManager AccordionManager = new();
+    AccordionManager am = new();
 }

@@ -20,12 +20,12 @@
     - Client
     - Reservation
 - Pensez que votre modèle Reservation va contenir des éléments en virtual 
-```
+```cs
     public virtual Animal Animal { get; set; }
     public virtual Client Client { get; set; }
 ```
 - Pour chaque future table et donc pour chaque modèle ci-dessus, vous allez avoir besoin d'un DBSet (remarquez que le DbSet est lié au modèle par mutateur et que Animals est au pluriel). Le DBSet permettra de créer la table selon le modèle, par exemple : 
-'''
+'''cs
     public DbSet<Animal> Animals { get; set; }
 '''  
 - Permettra de créer une table Animals
@@ -34,10 +34,10 @@
 ## Configuration de la base de données
 - Vous pouvez évidemment utiliser le SGBD que vous voulez ! Il y aura quelques adaptations à faire, mais vous trouverez les infos dans la doc.
 - Ajoutez la configuration de votre base de données (remplacez par vos données pour Server & Database, laissez Trusted & Encrypt tel que) : 
-'''
+'''cs
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer(@"Server=localhost\SQLEXPRESS;Database=DBName;Trusted_Connection=True;Encrypt=False");
+        optionsBuilder.UseSqlServer(@"Server=ZE-PC-OF-THE-FA\MSSQLSERVER01;Database=MnsMessengerTest;Trusted_Connection=True;Encrypt=False");
     }
 '''
 - Clique droit sur **le projet**, puis "Ouvrir dans un terminal"
@@ -49,14 +49,14 @@
 ## CRUD
 - Depuis le program.cs (pour l'instant), vous allez pouvoir faire du CRUD depuis le code directement, pour celà, quelques petites choses sont à savoir : 
     - Vous aurez besoin d'ouvrir la connexion à la BDD pour l'utiliser avec le code suivant :
-    '''
+    '''cs
         using (var db = new DatabaseContext())
         {
         // Code pour CRUD sur la BDD, avec db accessible
         }
     ''' 
     - Pour sauvegarder les changements (CUD), vous devez appliquer les changements effectués dans le code avec 
-    '''
+    '''cs
         db.SaveChanges();
     '''
     - Vous pouvez faire du LinQ pour récupérer des données par exemple.
@@ -64,7 +64,7 @@
 
 ## Peupler la base avec des données initiales
 - Pour initialiser la base de données avec des données de départ, vous pouvez le réaliser grâce à la méthode OnModelCreating, voici un exemple simple qui ajoute un client : 
-'''
+'''cs
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Client>().HasData(

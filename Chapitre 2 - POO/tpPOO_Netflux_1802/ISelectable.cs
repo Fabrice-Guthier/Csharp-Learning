@@ -1,7 +1,7 @@
 ﻿using tpPOO_Netflux_1802;
 
-interface ISelectable
+public interface ISelectable
 {
-    void Selected(User user);
+    public void Selected(User user);
 
 }

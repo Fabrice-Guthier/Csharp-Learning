@@ -2,18 +2,9 @@
 
 <button class="accordion" @onclick="Toggle">
 	<span>
-		@if (TitleLeftSide != null)
-			@TitleLeftSide(Icon)
-		else
-			@Icon
+		@Icon
 	</span>
-
 	@Title
-
-	<span>
-		@TitleRightSide
-	</span>
-
 </button>
 
 <div class="@PanelClass">
@@ -21,17 +12,12 @@
 </div>
 
 @code {
-
 	[Parameter]
 	public string Title { get; set; } = "";
 	[Parameter]
 	public RenderFragment? ChildContent { get; set; }
 	[Parameter]
 	public EventCallback OnOpen { get; set; } = new();
-	[Parameter]
-	public required RenderFragment? TitleRightSide { get; set; }
-	[Parameter]
-	public required RenderFragment<string>? TitleLeftSide { get; set; }
 	[Parameter]
 	public Boolean IsOpen { get; set; } = false;
 
